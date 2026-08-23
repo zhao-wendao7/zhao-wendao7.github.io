@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>静音裁剪器</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href=".">
+        <span class="brand-mark">*</span>
+        <span><strong>静音裁剪器</strong><small>LOCAL AUDIO TOOL</small></span>
+      </a>
+      <div class="privacy-note"><span class="status-dot"></span>所完成</div>
+    </header>
+
+    <!-- h1是大标题，p是n-->
+     <!-- class是这个大块的标签，不是类型 ，CSS中的样式设计也是以大块为基本单位-->
+    <section class="hero">
+      <div>
+        <p class="eyebrow">SILENCE TRIMMER / 01</p>
+        <h1>让声音更紧凑，<br><em>让表达更清晰。</em></h1>
+        <p class="hero-copy">批量移除音频中不必要的长静音，保留自然停顿。简单设置，立即导出。</p>
+      </div>
+      <div class="hero-orbit" aria-hidden="true"><span></span><i></i><b></b></div>
+    </section>
+<!-- span标签用来单独包裹一些内容，为这些内容添加样式 -->
+    <section class="workspace">
+      <div class="controls-panel">
+        <div class="section-label"><span>01</span><h2>裁剪规则</h2></div>
+        <p class="section-intro">低于强度阈值，并且持续达到时长阈值的片段会被移除。</p>
+        <div class="control-group">
+          <div class="control-heading"><label for="level">强度阈值</label><output id="levelValue">-42 dB</output></div>
+          <input id="level" type="range" min="-80" max="-10" value="-42" step="1">
+          <div class="range-hints"><span>更敏感</span><span>更宽松</span></div>
+        </div>
+        <div class="control-group">
+          <div class="control-heading"><label for="duration">时长阈值</label><output id="durationValue">0.80 秒</output></div>
+          <input id="duration" type="range" min="0.10" max="5" value="0.80" step="0.05">
+          <div class="range-hints"><span>短停顿也裁剪</span><span>仅长静音</span></div>
+        </div>
+        <div class="rule-card"><span class="rule-icon">⌁</span><div><strong>当前策略</strong><p>长静音将被删除，前后各保留 <b>20 ms</b> 缓冲。</p></div></div>
+        <button id="processAll" class="primary-button" type="button" disabled><span>处理全部音频</span><span>→</span></button>
+      </div>
+
+      <div class="files-panel">
+        <div class="section-label"><span>02</span><h2>音频文件</h2><span id="fileCount" class="count-badge">0</span></div>
+        <label id="dropzone" class="dropzone" for="fileInput">
+          <input id="fileInput" type="file" accept="audio/*,.wav,.mp3,.m4a,.ogg,.flac" multiple>
+          <span class="upload-icon">↑</span>
+          <strong>拖入音频，或点击选择</strong>
+          <span>支持 WAV、MP3、M4A、OGG 等格式，可多选</span>
+        </label>
+        <div id="fileList" class="file-list" aria-live="polite"></div>
+        <div id="emptyState" class="empty-state"><span>◌</span><p>还没有音频文件<br><small>上传后将在这里查看处理进度</small></p></div>
+      </div>
+    </section>
+
+    <footer class="footer"><span>静音裁剪器 v1.0</span><span>无需上传 · 无需安装 · 浏览器内完成</span></footer>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="../JavaScript/app.js"></script>
+</body>
+</html>
